@@ -25,6 +25,7 @@ func initApplication() *application {
 		App: a,
 	}
 
-	a.ErrorLog.Println("Foo bar")
+	app.App.Routes = app.routes()
+
 	return app
 }

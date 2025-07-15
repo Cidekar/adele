@@ -1,0 +1,21 @@
+AllowedOrigins:
+# Define origins as a list
+# e.g.,
+# - https:localhost.com
+# - http:127.0.0.1
+AllowedMethods:
+# add methods as a list
+#  - POST
+#  - PUT
+#  - DELETE
+#  - OPTIONS
+  - GET
+AllowedHeaders:
+  - Accept
+  - Authorization
+  - Content-Type
+  - X-CSRF-Token
+ExposedHeaders:
+  - Link
+AllowCredentials: false
+MaxAge: 300
