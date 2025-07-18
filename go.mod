@@ -4,10 +4,8 @@ go 1.23.0
 
 toolchain go1.23.4
 
-replace github.com/cidekar/adele-framework => /Users/harrisondestefano/Documents/adele-framework-fork
-
 require (
-	github.com/cidekar/adele-framework v0.0.0-00010101000000-000000000000
+	github.com/cidekar/adele-framework v0.0.0
 	github.com/go-chi/chi/v5 v5.2.2
 )
 
