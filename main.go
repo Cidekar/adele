@@ -3,8 +3,11 @@ package main
 import (
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 )
+
+var wg sync.WaitGroup
 
 func main() {
 
@@ -12,8 +15,11 @@ func main() {
 
 	go a.listenForShutdown()
 
+	wg.Add(1)
+
 	err := a.App.ListenAndServe()
-	a.App.ErrorLog.Println(err)
+	a.App.Log.Error(err)
+
 }
 
 // Here is where the wait group is invoked and all items in that were
@@ -27,9 +33,9 @@ func (a *application) listenForShutdown() {
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	s := <-quit
 
-	a.App.InfoLog.Println("Application received signal", s.String())
+	a.App.Log.Info("Application received signal", s.String())
 
-	a.App.InfoLog.Println("Good bye!")
+	a.App.Log.Info("Good bye!")
 
 	os.Exit(0)
 }
