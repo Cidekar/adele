@@ -17,6 +17,7 @@ func (a *application) ApiRoutes() http.Handler {
 
 		// API Routes: here is where you can add your API routes for the application. These
 		// routes are loaded by the router.
+		// TODO:
 		//r.Get("/health", a.Handlers.HealthStatus)
 	})
 
