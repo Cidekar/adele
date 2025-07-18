@@ -22,7 +22,7 @@ func (a *application) WebRoutes() http.Handler {
 		// routes are loaded by the router.
 
 		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintf(w, "Adele - jumping-off-point for creating a web application without having to write wiring code. \n")
+			fmt.Fprintf(w, "Welcome to Adele! \n")
 		})
 
 	})

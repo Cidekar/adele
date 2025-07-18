@@ -3,14 +3,19 @@ package main
 import (
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 )
+
+var wg sync.WaitGroup
 
 func main() {
 
 	a := initApplication()
 
 	go a.listenForShutdown()
+
+	wg.Add(1)
 
 	err := a.App.ListenAndServe()
 	a.App.Log.Error(err)

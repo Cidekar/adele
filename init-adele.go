@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"myapp/handlers"
+	"myapp/middleware"
 	"os"
 
 	"github.com/cidekar/adele-framework"
@@ -21,8 +23,18 @@ func initApplication() *application {
 
 	a.AppName = "myapp"
 
-	app := &application{
+	myMiddleware := &middleware.Middleware{
 		App: a,
+	}
+
+	myHandlers := &handlers.Handlers{
+		App: a,
+	}
+
+	app := &application{
+		App:        a,
+		Handlers:   myHandlers,
+		Middleware: myMiddleware,
 	}
 
 	app.App.Routes = app.routes()
