@@ -34,6 +34,7 @@ func initApplication() *application {
 	app := &application{
 		App:        a,
 		Handlers:   myHandlers,
+		Mail:       &a.Mail,
 		Middleware: myMiddleware,
 	}
 
