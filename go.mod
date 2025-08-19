@@ -27,6 +27,7 @@ require (
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/json-iterator/go v1.1.10 // indirect
+	github.com/justinas/nosurf v1.2.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
 	github.com/mailgun/mailgun-go/v4 v4.4.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect

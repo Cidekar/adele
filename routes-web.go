@@ -14,7 +14,8 @@ func (a *application) WebRoutes() http.Handler {
 
 	// Web Middleware: here is where you can add your Middleware for the web routes.
 	// These middleware are called on each web route request.
-	//r.Use(a.Middleware.NoSurf)
+
+	r.Use(a.Middleware.NoSurf)
 
 	r.Route("/", func(mux chi.Router) {
 
