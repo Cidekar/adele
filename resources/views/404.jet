@@ -1,0 +1,73 @@
+{{extends "./layouts/base.jet"}}
+
+{{block browserTitle()}}Adele{{end}}
+
+{{block css()}}
+
+{{end}}
+
+{{block pageContent()}}
+
+<style type="text/css">
+        :root {
+            --adele-pink: #EB4765;
+            --adele-white: #FBFBFB;
+            --adele-text: #490814;
+        }
+        body{
+            background-color: var(--adele-pink);
+            font-family: 'Roboto', sans-serif;
+        }
+        .container{
+            left: 50%;
+            position: fixed;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+        }
+        .console {
+            font-size:64px;
+            letter-spacing: -4px;
+            font-weight: 700;
+            font-style: italic;
+            text-align:center;
+            height:200px;
+            display:block;
+            position:relative;
+            color: var( --adele-white);
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            margin:auto;
+        }
+        .console::before{
+            content: "> "
+        }
+        .console-cursor {
+            display:inline-block;
+            position:relative;
+            font-style:normal;
+            top:-4px;
+            left:10px;
+        }
+        .console-text{
+            color:var(--adele-white);
+        }
+        .hide {
+            opacity:0;
+        }
+    </style>
+
+	<div class="container">
+
+        <div class="console"><span id="console-text">404</span><div class="console-cursor" id="console">&#95;</div></div>
+
+    </div>
+
+{{end}}
+
+{{block js()}}
+
+{{end}}
