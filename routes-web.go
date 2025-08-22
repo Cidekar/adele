@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/cidekar/adele-framework/mux"
@@ -17,14 +16,17 @@ func (a *application) WebRoutes() http.Handler {
 
 	r.Use(a.Middleware.NoSurf)
 
+	// 404 Route: Here is a catch-all web route for routing paths in the application
+	// that could not be found.
+
+	r.NotFound(a.Handlers.NotFound)
+
 	r.Route("/", func(mux chi.Router) {
 
 		// Web Routes: here is where you can add your web routes for the application. These
 		// routes are loaded by the router.
 
-		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-			fmt.Fprintf(w, "Welcome to Adele! \n")
-		})
+		r.Get("/", a.Handlers.Home)
 
 	})
 	return r

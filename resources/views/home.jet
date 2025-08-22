@@ -1,0 +1,180 @@
+{{extends "./layouts/base.jet"}}
+
+{{block browserTitle()}}Adele{{end}}
+
+{{block css()}}
+
+{{end}}
+
+{{block pageContent()}}
+
+<style type="text/css">
+        :root {
+            --adele-pink: #EB4765;
+            --adele-white: #FBFBFB;
+            --adele-text: #490814;
+        }
+        body{
+            background-color: var(--adele-pink);
+            font-family: 'Roboto', sans-serif;
+        }
+        .container{
+            left: 50%;
+            position: fixed;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+        }
+        .console {
+            font-size:64px;
+            letter-spacing: -4px;
+            font-weight: 700;
+            font-style: italic;
+            text-align:center;
+            height:200px;
+            display:block;
+            position:relative;
+            color: var( --adele-white);
+            top:0;
+            bottom:0;
+            left:0;
+            right:0;
+            margin:auto;
+        }
+        .console::before{
+            content: "> "
+        }
+        .console-cursor {
+            display:inline-block;
+            position:relative;
+            font-style:normal;
+            top:-4px;
+            left:10px;
+        }
+        .console-text{
+            color:var(--adele-white);
+        }
+        .hide {
+            opacity:0;
+        }
+    </style>
+
+	<div class="container">
+
+        <div class="console"><span id="console-text"></span><div class="console-cursor" id="console">&#95;</div></div>
+
+        <script type="text/javascript">
+
+            run();
+
+            function run() {
+
+                const config = {
+                    counters: {
+                        letterCount: 1,
+                        langCount: 1,
+                    },
+                    cursorIsHidden: true,
+                    elements: {
+                        console: "console",
+                        cursor: "console-text"
+                    },
+                    direction: 'ltr',
+                    lang: ['Hey.', 'You can skip the wiring code.', 'Batteries are included.', 'ADELE'],
+                    speeds: {
+                        flash: 400,
+                        typeSlow: 120,
+                        typeFast: 70,
+                        delay: 1000
+                    },
+                    wait: false,
+                    id: null,
+                    typeSpeed: null,
+                    loop: false
+                }
+
+                const consoleText = document.getElementById(config.elements.cursor)
+
+                function cursorBlink(){
+                    const console = document.getElementById(config.elements.console);
+                        if (config.cursorIsHidden) {
+                            console.className = 'console-cursor hide'
+                            config.cursorIsHidden = false
+                            return
+                        }
+
+                        console.className = 'console-cursor'
+                        config.cursorIsHidden = true
+                }
+
+                function typing(){
+                    if (!config.wait) {
+                        consoleText.innerHTML = config.lang[0].substring(0, config.counters.letterCount)
+                        if(config.direction === 'ltr') {
+                            config.counters.letterCount++;
+                        } else if(config.direction === 'rtl') {
+                            config.counters.letterCount -= 1;
+                        }
+                    }
+                }
+
+                function atStart(){
+                    if (config.counters.letterCount == 0 && !config.wait) {
+                        config.wait = true;
+                        consoleText.innerHTML = config.lang[0].substring(0, config.counters.letterCount)
+                        window.setTimeout(function() {
+                            config.lang.push(config.lang.shift());
+                            config.direction = 'ltr'
+                            config.counters.letterCount++;
+                            config.wait = false;
+                            clearInterval(config.id)
+                            type()
+                        }, config.speeds.delay)
+                    }
+                }
+
+                function atEnd(){
+                    if (config.counters.letterCount === config.lang[0].length + 1 && !config.wait) {
+                        config.wait = true;
+                        window.setTimeout(function() {
+                            config.counters.langCount++
+                            config.direction = 'rtl';
+                            config.counters.letterCount -= 1;
+                            config.wait = false;
+                            clearInterval(config.id)
+                            type()
+                        }, 1000)
+                    }
+                }
+
+                function type() {
+                    if(!config.loop && config.counters.langCount > config.lang.length){
+                        return
+                    }
+                    if(config.direction === 'ltr') {
+                        config.typeSpeed = config.speeds.typeSlow
+                    } else {
+                        config.typeSpeed = config.speeds.typeFast
+                    }
+                     config.id = window.setInterval(() => {
+                        atStart()
+                        atEnd()
+                        typing()
+                    }, config.typeSpeed)
+                }
+
+                window.setInterval(() => {
+                    cursorBlink()
+                }, config.speeds.flash)
+
+                window.setTimeout(() => { type() }, 1000)
+            }
+        </script>
+    </div>
+
+{{end}}
+
+{{block js()}}
+
+{{end}}
