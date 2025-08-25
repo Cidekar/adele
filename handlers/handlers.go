@@ -3,11 +3,14 @@ package handlers
 import (
 	"net/http"
 
+	"myapp/models"
+
 	"github.com/cidekar/adele-framework"
 )
 
 type Handlers struct {
-	App *adele.Adele
+	App    *adele.Adele
+	Models *models.Models
 }
 
 func (h *Handlers) Home(w http.ResponseWriter, r *http.Request) {
