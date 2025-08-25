@@ -17,6 +17,8 @@ func main() {
 
 	wg.Add(1)
 
+	a.jobsSchedule()
+
 	err := a.App.ListenAndServe()
 	a.App.Log.Error(err)
 
@@ -38,4 +40,12 @@ func (a *application) listenForShutdown() {
 	a.App.Log.Info("Good bye!")
 
 	os.Exit(0)
+}
+
+// Here is where you may add jobs to the scheduler. Any jobs added will be
+// called by the scheduler using the defined interval. You may use one of
+// several pre-defined schedules in place of a cron expression (i.e., @yearly,
+// @monthly, @weekly, @daily, @hourly and @every <duration>).
+func (a *application) jobsSchedule() {
+	// ...
 }
