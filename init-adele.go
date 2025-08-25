@@ -4,6 +4,7 @@ import (
 	"log"
 	"myapp/handlers"
 	"myapp/middleware"
+	"myapp/models"
 	"os"
 
 	"github.com/cidekar/adele-framework"
@@ -39,6 +40,8 @@ func initApplication() *application {
 	}
 
 	app.App.Routes = app.routes()
+
+	app.Models = models.New(a)
 
 	return app
 }
