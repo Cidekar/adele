@@ -1,10 +1,14 @@
 package main
 
 import (
+	"log"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
+
+	"github.com/cidekar/adele-framework/httpserver"
+	"github.com/cidekar/adele-framework/rpcserver"
 )
 
 var wg sync.WaitGroup
@@ -15,11 +19,15 @@ func main() {
 
 	go a.listenForShutdown()
 
-	wg.Add(1)
+	err := rpcserver.Start(a.App)
+	if err != nil {
+		log.Fatalf("failed to start rpc: %s", err)
+	}
 
 	a.jobsSchedule()
 
-	err := a.App.ListenAndServe()
+	//err = a.App.ListenAndServe()
+	err = httpserver.Start(a.App)
 	a.App.Log.Error(err)
 
 }
@@ -36,6 +44,11 @@ func (a *application) listenForShutdown() {
 	s := <-quit
 
 	a.App.Log.Info("Application received signal", s.String())
+
+	err := rpcserver.Stop(a.App)
+	if err != nil {
+		log.Fatal("RPC server failed to stop:", err)
+	}
 
 	a.App.Log.Info("Good bye!")
 
