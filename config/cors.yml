@@ -1,8 +1,13 @@
 AllowedOrigins:
-# Define origins as a list
-# e.g.,
-# - https://localhost.com
-# - http:127.0.0.1
+# Define origins as a list by explicitly listing origins only. List exact
+# domains you trust and never use wildcards in production.
+#
+# Examples:
+# - https://localhost:3000
+# - https://127.0.0.1:3000
+#
+# Do not use wildcards in production— allows ANY origin to call your application:
+# - "*"
 AllowedMethods:
 # add methods as a list
 #  - POST
