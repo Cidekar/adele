@@ -1,7 +1,7 @@
 AllowedOrigins:
 # Define origins as a list
 # e.g.,
-# - https:localhost.com
+# - https://localhost.com
 # - http:127.0.0.1
 AllowedMethods:
 # add methods as a list
