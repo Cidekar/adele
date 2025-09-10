@@ -4,10 +4,6 @@ go 1.23.0
 
 toolchain go1.23.4
 
-// TODO:
-// REMOVE THIS LINE, duh.
-replace github.com/cidekar/adele-framework => ../../Documents/adele-framework-fork
-
 require (
 	github.com/cidekar/adele-framework v0.0.0
 	github.com/go-chi/chi/v5 v5.2.2
