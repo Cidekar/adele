@@ -21,6 +21,8 @@ func main() {
 
 	a := bootstrapApplication()
 
+	go a.Mail.ListenForMail()
+
 	go a.listenForShutdown()
 
 	err := rpcserver.Start(a.App)
