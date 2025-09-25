@@ -2,14 +2,13 @@ BINARY_NAME=adeleApp
 
 build:
 	@go mod vendor
-	@echo "Building adele..."
+	@echo "Building..."
 	@go build -o tmp/${BINARY_NAME} .
-	@echo "adele built!"
+	@echo "Build complete!"
 
 run: build
-	@echo "Starting adele..."
-	@./tmp/${BINARY_NAME} &
-	@echo "adele started!"
+	@echo "Starting..."
+	@./tmp/${BINARY_NAME}
 
 clean:
 	@echo "Cleaning..."
@@ -17,16 +16,12 @@ clean:
 	@rm tmp/${BINARY_NAME}
 	@echo "Cleaned!"
 
-test:
-	@echo "Testing..."
-	@go test ./...
-	@echo "Done!"
-
 start: run
 
 stop:
-	@echo "Stopping adele..."
+	@echo "Stopping..."
 	@-pkill -SIGTERM -f "./tmp/${BINARY_NAME}"
-	@echo "Stopped adele!"
+	@PID=$$(pgrep -f "./tmp/${BINARY_NAME}"); \
+    while kill -0 $$PID 2>/dev/null; do sleep 0.1; done
 
 restart: stop start
