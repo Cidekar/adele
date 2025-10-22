@@ -12,6 +12,7 @@ import (
 
 	"github.com/cidekar/adele-framework"
 	"github.com/cidekar/adele-framework/httpserver"
+	"github.com/cidekar/adele-framework/provider"
 	"github.com/cidekar/adele-framework/rpcserver"
 )
 
@@ -101,6 +102,18 @@ func bootstrapApplication() *application {
 	app.App.Routes = app.routes()
 
 	app.Models = models.New(a)
+
+	p := &provider.Provider{
+		EnabledProviders: make(map[string]bool),
+		ProviderConfigs:  make(map[string]map[string]interface{}),
+	}
+
+	a.Provider = p
+
+	if err := a.Provider.LoadProviders(app.App); err != nil {
+		a.Log.Error(err)
+		os.Exit(1)
+	}
 
 	return app
 }
