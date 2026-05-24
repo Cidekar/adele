@@ -39,6 +39,23 @@ go.mod
 
 There is **no `cmd/` directory**. `main.go` is the entry point. There is **no `internal/`**, no `db/`, no `app/`. Do not invent these.
 
+**File placement — non-negotiable. Put things here, do not ask, do not invent paths:**
+
+| What | Where |
+|------|-------|
+| Jet view templates  | `resources/views/<name>.jet` |
+| Layouts/partials    | `resources/views/layouts/`, `resources/views/partials/` |
+| Mail templates      | `resources/mail/` |
+| Handlers            | `handlers/<thing>.go` |
+| Models              | `models/<thing>.go` |
+| Middleware          | `middleware/<thing>.go` |
+| Web routes          | `routes-web.go` |
+| API routes          | `routes-api.go` |
+| Config (YAML)       | `config/` |
+| Static/build assets | `public/` |
+
+If a file doesn't fit a row above, it does not get a new directory — extend an existing one. No `cmd/`, `internal/`, `db/`, `app/`, or `templates/`.
+
 The framework owns: HTTP server, routing (`*mux.Mux` wrapping `*chi.Mux`), middleware base chain (RequestID, RealIP, RateLimiter, CORS, Recoverer, SessionLoad, Maintenance), DB pool, sessions, render (Jet/Go templates/Inertia), mailer, cache (Redis or Badger), RPC server, scheduler. The app owns: handlers, route declarations, business logic, optional wrappers.
 
 ---
