@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/cidekar/adele-framework v1.0.3
-	github.com/go-chi/chi/v5 v5.2.4
+	github.com/go-chi/chi/v5 v5.4.0
 	github.com/justinas/nosurf v1.2.0
 	github.com/upper/db/v4 v4.10.0
 )
