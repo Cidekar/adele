@@ -3,8 +3,8 @@ module myapp
 go 1.26.0
 
 require (
-	github.com/cidekar/adele-framework v1.0.14
-	github.com/go-chi/chi/v5 v5.4.0
+	github.com/cidekar/adele-framework v1.0.15
+	github.com/go-chi/chi/v5 v5.5.0
 	github.com/justinas/nosurf v1.2.0
 	github.com/upper/db/v4 v4.10.0
 )
@@ -80,7 +80,7 @@ require (
 	github.com/zeebo/xxh3 v1.0.2 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/crypto v0.58.0 // indirect
-	golang.org/x/net v0.61.0 // indirect
+	golang.org/x/net v0.62.0 // indirect
 	golang.org/x/sync v0.24.0 // indirect
 	golang.org/x/sys v0.49.0 // indirect
 	golang.org/x/text v0.43.0 // indirect
